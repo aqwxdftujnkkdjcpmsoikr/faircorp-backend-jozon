@@ -12,6 +12,7 @@ public class DummyUserService implements UserService {
 
     @Override
     public void greetAll() {
+    	//Sample text
         for (int i = 0; i < ListNames.size(); i++) GreetingService.greet(ListNames.get(i));
     }
 }
