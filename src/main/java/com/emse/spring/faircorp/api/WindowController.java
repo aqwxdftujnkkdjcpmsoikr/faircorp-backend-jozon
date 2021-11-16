@@ -44,10 +44,9 @@ public class WindowController {
 
     @PostMapping // (8)
     public WindowDto create(@RequestBody WindowDto dto) {
-        // WindowDto must always contain the window room
         Room room = roomDao.getById(dto.getRoomId());
         Window window = null;
-        // On creation id is not defined
+        // id null on creation
         if (dto.getId() == null) {
             window = windowDao.save(new Window(dto.getName(), dto.getWindowStatus(), room));
         }

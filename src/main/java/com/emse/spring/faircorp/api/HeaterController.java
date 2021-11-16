@@ -29,7 +29,6 @@ public class HeaterController {
         return heaterDao.findAll().stream().map(HeaterDto::new).collect(Collectors.toList());
     }
 
-
     @GetMapping(path = "/{id}")
     public HeaterDto findById(@PathVariable Long id) {
         return heaterDao.findById(id).map(HeaterDto::new).orElse(null);
@@ -44,10 +43,9 @@ public class HeaterController {
 
     @PostMapping
     public HeaterDto create(@RequestBody HeaterDto dto) {
-        // HeaterDto must always contain the heater room
         Room room = roomDao.getById(dto.getRoomId());
         Heater heater = null;
-        // On creation id is not defined
+        // id null on creation
         if (dto.getId() == null) {
             heater = new Heater(dto.getName(), room, dto.getHeaterStatus());
             heater.setPower(dto.getPower());
